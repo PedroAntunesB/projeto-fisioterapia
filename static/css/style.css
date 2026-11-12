@@ -1,0 +1,432 @@
+@layer base, layout, componentes;
+
+:root {
+  --verde: #17685d;
+  --verde-esc: #0f4a42;
+  --suave: #dcefea;
+  --fundo: #f6f5f0;
+  --areia: #e4b66a;
+  --cinza: #dce3e7;
+  --texto: #23312e;
+  --sombra: 0 1px 2px rgb(23 104 93/0.08), 0 8px 24px -8px rgb(23 104 93/0.18);
+  --raio: 16px;
+  color-scheme: light;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+  }
+  body {
+    margin: 0;
+    font-family: "Open Sans", Arial, sans-serif;
+    font-size: clamp(1rem, 0.95rem + 0.2vw, 1.075rem);
+    line-height: 1.7;
+    color: var(--texto);
+    background: var(--fundo);
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: Montserrat, Poppins, Arial, sans-serif;
+    color: var(--verde);
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+  h2 {
+    font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.2rem);
+    margin: 0 0 0.6em;
+    position: relative;
+    padding-bottom: 0.45em;
+  }
+  h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 56px;
+    height: 4px;
+    border-radius: 4px;
+    background: var(--areia);
+  }
+  p {
+    text-wrap: pretty;
+  }
+  body {
+    overflow-wrap: anywhere;
+  }
+  img,
+  iframe {
+    max-width: 100%;
+  }
+  a {
+    color: var(--verde);
+    text-underline-offset: 3px;
+  }
+  ::selection {
+    background: var(--areia);
+    color: #000;
+  }
+}
+
+@layer layout {
+  .wrap {
+    width: min(1080px, 100% - 40px);
+    margin-inline: auto;
+  }
+  section {
+    padding-block: clamp(48px, 7vw, 88px);
+  }
+  section:nth-of-type(even) {
+    background: #fff;
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: color-mix(in srgb, #fff 80%, transparent);
+    backdrop-filter: blur(12px) saturate(1.4);
+    border-bottom: 1px solid rgb(23 104 93/0.12);
+  }
+  header .wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px 24px;
+    padding-block: 10px;
+  }
+  .marca {
+    font:
+      700 1.05rem Montserrat,
+      Arial,
+      sans-serif;
+    color: var(--verde);
+    text-decoration: none;
+  }
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  nav a {
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--texto);
+    text-decoration: none;
+    transition:
+      background 0.2s,
+      color 0.2s;
+  }
+  nav a:hover {
+    background: var(--suave);
+    color: var(--verde);
+  }
+
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(64px, 10vw, 128px);
+    background:
+      radial-gradient(
+        60% 80% at 90% 0%,
+        rgb(228 182 106/0.28),
+        transparent 70%
+      ),
+      radial-gradient(70% 90% at 0% 100%, rgb(23 104 93/0.14), transparent 70%),
+      var(--suave);
+  }
+  .hero .wrap > * {
+    max-width: 760px;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 1.5rem + 3.5vw, 3.8rem);
+    margin: 0 0 0.3em;
+    letter-spacing: -0.02em;
+  }
+  .destaque {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr));
+    gap: 24px;
+    margin-block: 28px;
+  }
+}
+
+@layer componentes {
+  .btn {
+    display: inline-block;
+    margin: 10px 10px 0 0;
+    padding: 12px 24px;
+    background: var(--verde);
+    color: #fff;
+    border: 2px solid var(--verde);
+    border-radius: 999px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: var(--sombra);
+    transition:
+      transform 0.2s,
+      background 0.2s,
+      color 0.2s;
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+    background: var(--verde-esc);
+  }
+  .btn.sec {
+    background: transparent;
+    color: var(--verde);
+    box-shadow: none;
+  }
+  .btn.sec:hover {
+    background: var(--verde);
+    color: #fff;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid rgb(23 104 93/0.12);
+    border-radius: var(--raio);
+    padding: 22px;
+    box-shadow: var(--sombra);
+    position: relative;
+    overflow: hidden;
+    transition:
+      transform 0.25s,
+      box-shadow 0.25s;
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--verde), var(--areia));
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 2px 4px rgb(23 104 93/0.1),
+      0 18px 36px -12px rgb(23 104 93/0.3);
+  }
+  section:nth-of-type(even) .card {
+    background: var(--fundo);
+  }
+  .card h3 {
+    margin: 0.2em 0 0.4em;
+    font-size: 1.12rem;
+  }
+  .card p {
+    margin: 0.2em 0 0.8em;
+  }
+  .card a:last-child {
+    margin-top: auto;
+    font-weight: 700;
+  }
+  .card.largo {
+    grid-column: 1/-1;
+  }
+  .inst {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #5c6b67;
+  }
+
+  .video {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: 0;
+    border-radius: 12px;
+    margin-bottom: 14px;
+    background: var(--cinza);
+  }
+  .videos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 16px;
+  }
+
+  .aviso {
+    background: linear-gradient(135deg, #fff8ea, #fff);
+    border: 1px solid rgb(228 182 106/0.5);
+    border-left: 6px solid var(--areia);
+    padding: 16px 20px;
+    border-radius: 12px;
+  }
+  .nota {
+    background: var(--suave);
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-weight: 600;
+    border-left: 4px solid var(--verde);
+  }
+
+  .tema {
+    background: #fff;
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+    padding: clamp(20px, 3vw, 34px);
+    margin-block: 28px;
+    border-top: 5px solid var(--areia);
+    counter-increment: t;
+  }
+  section:nth-of-type(even) .tema {
+    background: var(--fundo);
+  }
+  .tema h3 {
+    font-size: 1.4rem;
+    margin-top: 0;
+  }
+  .tema .abertura {
+    font-weight: 600;
+    font-style: italic;
+    color: var(--verde-esc);
+  }
+  .tema h4 {
+    margin: 18px 0 6px;
+  }
+  .tema ul {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+  }
+  .tema li {
+    position: relative;
+    padding-left: 26px;
+    margin-block: 5px;
+  }
+  .tema li::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 0.62em;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--verde);
+    box-shadow: 0 0 0 4px var(--suave);
+  }
+  .cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 0 32px;
+  }
+
+  footer {
+    background: linear-gradient(160deg, var(--verde), var(--verde-esc));
+    color: #fff;
+    padding-block: 40px;
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+  footer a {
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--areia);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  @supports (animation-timeline: view()) {
+    .card,
+    .tema {
+      animation: entrar linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 28%;
+    }
+    @keyframes entrar {
+      from {
+        opacity: 0;
+        translate: 0 24px;
+      }
+      to {
+        opacity: 1;
+        translate: 0 0;
+      }
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer componentes {
+  .menu-btn {
+    display: none;
+    padding: 8px 16px;
+    font:
+      700 0.95rem Montserrat,
+      Arial,
+      sans-serif;
+    color: var(--verde);
+    background: var(--suave);
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  @media (max-width: 760px) {
+    .menu-btn {
+      display: inline-block;
+    }
+    nav {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      padding-bottom: 8px;
+    }
+    nav.aberto {
+      display: flex;
+    }
+    nav a {
+      padding: 12px 14px;
+      font-size: 1rem;
+    }
+    .btn {
+      display: block;
+      text-align: center;
+      margin-right: 0;
+    }
+    .grid {
+      gap: 16px;
+    }
+    .card {
+      padding: 18px;
+    }
+    .tema {
+      margin-inline: -6px;
+    }
+    html {
+      scroll-padding-top: 70px;
+    }
+  }
+  @media (max-width: 420px) {
+    .hero {
+      padding-block: 48px;
+    }
+    .wrap {
+      width: min(1080px, 100% - 28px);
+    }
+  }
+}

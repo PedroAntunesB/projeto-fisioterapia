@@ -6,14 +6,22 @@
     <title>Saúde para além da doença</title>
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
+      href="{{ url_for('static', filename='css/style.css') }}"
     />
   </head>
   <body>
     <header>
       <div class="wrap">
         <a class="marca" href="#inicio">Saúde para além da doença</a>
-        <nav>
+        <button
+          class="menu-btn"
+          type="button"
+          aria-expanded="false"
+          aria-controls="menu"
+        >
+          ☰ Menu
+        </button>
+        <nav id="menu">
           <a href="#inicio">Início</a>
           <a href="#videos">Vídeos educativos</a>
           <a href="#cartilha">Cartilha digital</a>
@@ -176,7 +184,30 @@
                 >Acessar o conteúdo →</a
               >
             </article>
-            <article class="card">
+            <article class="card largo">
+              <div class="videos">
+                <iframe
+                  class="video"
+                  src="https://www.youtube.com/embed/idMaAdhjEQA"
+                  title="Habilidades culinárias e o tempo"
+                  loading="lazy"
+                  allowfullscreen
+                ></iframe>
+                <iframe
+                  class="video"
+                  src="https://www.youtube.com/embed/x5EwVBmVk8o"
+                  title="10 passos para uma alimentação saudável"
+                  loading="lazy"
+                  allowfullscreen
+                ></iframe>
+                <iframe
+                  class="video"
+                  src="https://www.youtube.com/embed/PnSxs6OZ_cY"
+                  title="O Guia Alimentar que todo brasileiro deveria conhecer"
+                  loading="lazy"
+                  allowfullscreen
+                ></iframe>
+              </div>
               <h3>Vídeos sobre o Guia Alimentar</h3>
               <p class="inst">Ministério da Saúde</p>
               <p>
@@ -191,6 +222,13 @@
               >
             </article>
             <article class="card">
+              <iframe
+                class="video"
+                src="https://www.youtube.com/embed/T0ea-IOlNWY"
+                title="Os cuidados com a saúde mental dos trabalhadores"
+                loading="lazy"
+                allowfullscreen
+              ></iframe>
               <h3>Cuidados com a saúde mental</h3>
               <p class="inst">Ministério da Saúde</p>
               <p>Materiais sobre autocuidado, bem-estar e rede de apoio.</p>
@@ -219,12 +257,6 @@
             saudável. A saúde é construída diariamente, por meio das condições
             em que vivemos e trabalhamos, dos nossos hábitos e das oportunidades
             que temos de cuidar de nós mesmos.
-          </p>
-          <p class="aviso">
-            <strong>Material educativo em elaboração.</strong> Esta é uma
-            estrutura inicial: o conteúdo completo ainda deve ser redigido e
-            passar por revisão técnica (Fisioterapia e Nutrição) e conferência
-            docente antes de ser tratado como publicação final.
           </p>
 
           <article class="tema" id="saude">
@@ -476,11 +508,6 @@
       <section id="referencias">
         <div class="wrap">
           <h2>Referências</h2>
-          <p>
-            Fontes institucionais de consulta. Antes da versão final da
-            cartilha, é preciso consultar os documentos e citar as fontes
-            específicas que fundamentarem cada orientação.
-          </p>
           <div class="grid">
             <div class="card">
               <h3>Guia Alimentar para a População Brasileira</h3>
@@ -494,6 +521,11 @@
                 target="_blank"
                 rel="noopener"
                 >Consultar a referência →</a
+              ><br /><a
+                href="{{ url_for('static', filename='pdf/guia-alimentar-para-a-populacao-brasileira_2014.pdf') }}"
+                target="_blank"
+                rel="noopener"
+                >Abrir o PDF do Guia (edição 2014) →</a
               >
             </div>
             <div class="card">
@@ -526,6 +558,29 @@
               >
             </div>
           </div>
+          <h3>Materiais extra</h3>
+          <div class="grid">
+            <div class="card">
+              <h3>Artigo científico</h3>
+              <p class="inst">SciELO</p>
+              <a
+                href="https://www.scielo.br/j/icse/a/9DHVfVMbDV9WcdVtwPGMwHw/?format=html&amp;lang=pt&amp;ilang=pt_BR"
+                target="_blank"
+                rel="noopener"
+                >Ler o artigo →</a
+              >
+            </div>
+            <div class="card">
+              <h3>Cursos e eventos</h3>
+              <p class="inst">Fundacentro</p>
+              <a
+                href="https://cursos-eventos.fundacentro.gov.br/cursos-e-eventos/inicio"
+                target="_blank"
+                rel="noopener"
+                >Acessar o site →</a
+              >
+            </div>
+          </div>
           <p>
             Outras bases indicadas para a pesquisa e a revisão: Organização
             Mundial da Saúde (conceitos e promoção da saúde), Fundacentro (saúde
@@ -538,28 +593,6 @@
       <section id="orientacoes">
         <div class="wrap">
           <h2>Orientações e responsabilidade</h2>
-          <ul>
-            <li>
-              Conteúdos de ergonomia, postura e movimento devem ser revisados
-              por profissionais de Fisioterapia.
-            </li>
-            <li>
-              Conteúdos de alimentação e hidratação devem ser revisados por
-              profissionais de Nutrição.
-            </li>
-            <li>
-              Informações, referências e adequação ao público devem ser
-              conferidas pelos professores ou responsáveis técnicos.
-            </li>
-            <li>
-              Exercícios não são obrigatórios para todos: as necessidades de
-              quem trabalha sentado diferem das de quem realiza atividade física
-              intensa.
-            </li>
-            <li>
-              Links e materiais devem ser verificados antes da publicação.
-            </li>
-          </ul>
           <p class="aviso">
             <strong>Nota de responsabilidade:</strong> este site possui
             finalidade educativa e informativa. As orientações não substituem
@@ -619,5 +652,6 @@
         técnica.
       </div>
     </footer>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   </body>
 </html>
